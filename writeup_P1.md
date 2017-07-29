@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 ![pipeline](./pipeline.png)
 
-This simple pipeline consisted of 5 steps, as shown in the above figure. First, the image is converted to grayscale. Second, the image is smoothed by a gaussian blur operation. Third, the image is processed by Hough line transformation to derive all possible line segments. Fourth, the image is masked to only select a region corresponding to the front lanes the car is facing. Finally, all line segments in the selection region are processed by function (see below) to derive two lane lines, one for the left the other for the right.
+This simple pipeline consists of 5 steps, as shown in the above figure. First, the image is converted to grayscale. Second, the image is smoothed by a gaussian blur operation. Third, the image is processed by Hough line transformation to derive all possible line segments. Fourth, the image is masked to only select a region corresponding to the front lanes the car is facing. Finally, all line segments in the selection region are processed by function (see below) to derive two lane lines, one for the left the other for the right.
 
 To draw a single line on the left and right lanes, a new helper function is created: 
 ```python
