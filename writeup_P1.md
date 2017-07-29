@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 ![pipeline](./pipeline.png)
 
-This simple pipeline consisted of 5 steps, as shown in the above figure. First, the image is converted to grayscale. Second, the image is smoothed by a gaussian blur operation. Third, the image is processed by Hough line transformation to derive all possible line segments. Fourth, the image is masked to only select a region corresponding to the front lane the car is facing. Finally, all line segments in the selection region is processed by function to derive two lane lines, one for the left the other for the right.
+This simple pipeline consisted of 5 steps, as shown in the above figure. First, the image is converted to grayscale. Second, the image is smoothed by a gaussian blur operation. Third, the image is processed by Hough line transformation to derive all possible line segments. Fourth, the image is masked to only select a region corresponding to the front lanes the car is facing. Finally, all line segments in the selection region are processed by function (see below) to derive two lane lines, one for the left the other for the right.
 
 To draw a single line on the left and right lanes, a new helper function is created: 
 ```python
@@ -84,16 +84,32 @@ if max(y1,y2) > y_bottom:
 
 * this function outputs only two lines representing the left and right lanes. The final two lines are average of all lines determined by the Hough lines operation. All line candidates are divided into two groups according to their slope values. The averaging weights are the corresponding height of each line segments, such that horizontal lines contributes less to the final average lines.
 
+### Test on videos
+![solideWhiteRight](./solidWhiteRight.mp4.gif)
+
+
 ### 2. Identify potential shortcomings with your current pipeline
 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
+Potential shortcomings are the following:
+* straigtlines is not the optimal representation for lane lines at curves.
+    * For improvement, we may use a polynomial to represent lane lines.
+* this pipeline will not be able to single out straight textures on the road or shadows of divider walls that are not lane lines but will be identified as lines by the Hough transformation.
+    * For improvement, we may use color filtering to select white and yellow lines only, however, change of lighting conditions could possibly change the lane colors on an image, so naive coloring filtering would not be robust enough.
+    * We could use Kalman filter to track the lane lines and treat the derivation of lane lines for each frame as a noisy measurement. A very crude 0th-dynamics Kalman filter is implemented and tested below.
+* this pipeline has a fixed region selection for lane lines, however this method would not work well when the car is climbing and decending a hill, under which senarios the horizon on an image moves down and up, which affects how much road surface the camera may capture.
+    * For improvement, we may make the region of selection adaptive to the car's attitude if the pipeline has access to the car's IMU sensor.
 
 ### 3. Suggest possible improvements to your pipeline
+See above points.
 
-A possible improvement would be to ...
+**Challenge test without filtering**:
 
-Another potential improvement could be to ...
+![challenge](./challenge.mp4.gif)
+
+**Challenge test with disturbance rejection filtering**:
+
+![challengeDR](./challenge-DR-output.mp4.gif)
+
+**Challenge test with a 0th-order dynamics Kalman filtering**:
+
+![challengeKF](./challenge-DR-output.mp4.gif)
