@@ -91,7 +91,7 @@ if max(y1,y2) > y_bottom:
 ### 2. Identify potential shortcomings with your current pipeline
 
 Potential shortcomings are the following:
-* straigtlines is not the optimal representation for lane lines at curves.
+* a straigt line is not the optimal representation for a lane line at curves.
     * For improvement, we may use a polynomial to represent lane lines.
 * this pipeline will not be able to single out straight textures on the road or shadows of divider walls that are not lane lines but will be identified as lines by the Hough transformation.
     * For improvement, we may use color filtering to select white and yellow lines only, however, change of lighting conditions could possibly change the lane colors on an image, so naive coloring filtering would not be robust enough.
