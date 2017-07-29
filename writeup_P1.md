@@ -112,4 +112,4 @@ See above points.
 
 **Challenge test with a 0th-order dynamics Kalman filtering**:
 
-![challengeKF](./challenge-DR-output.mp4.gif)
+![challengeKF](./challenge-KF-output.mp4.gif)
