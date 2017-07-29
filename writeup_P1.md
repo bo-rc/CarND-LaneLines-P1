@@ -82,7 +82,7 @@ if max(y1,y2) > y_bottom:
   y_bottom = max(y1,y2)
 ```
 
-* this function outputs only two lines representing the left and right lanes. The final two lines are average of all lines determined by the Hough lines operation. All line candidates are divided into two groups according to their slope values. The averaging weights are the corresponding height of each line segments, such that horizontal lines contributes less to the final average lines.
+* this function outputs only two lines representing the left and right lanes. The final two lines are averaging outputs of all lines determined in a previous step by the Hough lines processing. All line candidates are divided into two groups according to their slope values. The averaging weights are the corresponding heights of each line segments, such that horizontal lines contributes less to the final averaged lines.
 
 ### Test on videos
 ![solideWhiteRight](./solidWhiteRight.mp4.gif)
