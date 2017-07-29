@@ -95,7 +95,7 @@ Potential shortcomings are the following:
     * For improvement, we may use a polynomial to represent the lane.
 * this pipeline will not be able to single out straight textures on the road or shadows of divider walls that are not lane lines.
     * For improvement, we may use color filtering to select white and yellow lines only. However, change of lighting conditions could possibly change the lane colors on an image, so naive coloring filtering would not be robust enough.
-    * We could use Kalman filter to track the lane lines and treat the derivation of lane lines for each frame as a noisy measurement. A very crude 0th-dynamics Kalman filter is implemented and tested below.
+    * We could use Kalman filtering to track the lane lines and treat the derivations of lane lines for each frame as noisy measurements. A very crude 0th-order dynamics Kalman filter was implemented and tested below.
 * this pipeline has a fixed region selection for lane lines. However this method would not work well when the car is climbing and decending a hill, under which senarios the horizon on an image moves down and up, which affects how much road surface the camera may capture.
     * For improvement, we may make the region of selection adaptive to the car's attitude if the pipeline has access to the car's IMU sensor.
 
